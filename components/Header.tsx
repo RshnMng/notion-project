@@ -7,7 +7,7 @@ function Header() {
 
     const { user } = useUser();
   return (
-    <div className="flex items-center justify-between p-5 bg-pink-300">
+    <div className="flex items-center justify-between p-5 bg-pink-300 relative">
         { user && <h1 className="text-2xl">{user?.firstName}{`'s`} Workstation</h1>}
 
     
@@ -24,5 +24,5 @@ function Header() {
     </div>
   )
 }
-
+ 
 export default Header
