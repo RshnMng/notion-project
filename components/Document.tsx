@@ -10,6 +10,7 @@ function Document({id} : {id: string}) {
     const [input, setInput ]  = useState('check it out');
     const [isUpdating, startTransition ] = useTransition();
     const [data, loading, error ] = useDocumentData(doc(db, 'documents', id));
+   
 
 
     useEffect(() => {
@@ -29,8 +30,8 @@ function Document({id} : {id: string}) {
     }
   return (
         <div>
-                <div>
-                        <form onSubmit={updateTitle}>
+                <div className='flex max-w-6xl mx-auto justify-between pb-5'>
+                        <form className='flex flex-1 space-x-2' onSubmit={updateTitle}>
                             {/* update title */}
                             <Input value={input} onChange={ (e) => setInput(e.target.value)} />
                             <Button disabled={isUpdating} type='submit' >{isUpdating ? `Updating...` : 'Update' }</Button>
