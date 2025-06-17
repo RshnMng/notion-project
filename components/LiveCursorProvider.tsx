@@ -30,7 +30,7 @@ function LiveCursorProvider( { children } : { children : React.ReactNode }) {
         
         )}
         
-        
+        {children}
       
     </div>
   )

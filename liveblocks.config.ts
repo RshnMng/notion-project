@@ -20,7 +20,7 @@ declare global {
       info: {
         name: string, 
         email: string, 
-        avatar: string
+        avatar: any
       };
     };
 

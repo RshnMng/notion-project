@@ -4,7 +4,13 @@ import RoomProvider from '@/components/RoomProvider';
 function Doclayout({ children, params: { id } } : { children : React.ReactNode, params : { id : string } } ) {
     auth.protect();
   return (
-    <RoomProvider roomId={id}> {children} </RoomProvider>
+    <>
+    <h1>check mate</h1>
+    <RoomProvider roomId={id}>
+       {children} 
+       <h1>working</h1>
+       </RoomProvider>
+    </>
   )
 }
 
