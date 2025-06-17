@@ -31,10 +31,10 @@ function Document({id} : {id: string}) {
   return (
         <div>
                 <div className='flex max-w-6xl mx-auto justify-between'>
-                        <form className='flex space-x-2' onSubmit={updateTitle}>
+                        <form className='flex space-x-2 flex-1' onSubmit={updateTitle}>
                             {/* update title */}
-                            <Input value={input} onChange={ (e) => setInput(e.target.value)} />
-                            <Button disabled={isUpdating} type='submit' >{isUpdating ? `Updating...` : 'Update' }</Button>
+                            <Input value={input} onChange={ (e) => setInput(e.target.value)} className='bg-white font-bold text-green-700 text-center max-w-2xl' />
+                            <Button disabled={isUpdating} type='submit' >{isUpdating ? `Updating...` : 'Update' }</Button>                                   
                             {/* if owner => invite user and delete document*/}
                         </form>
                 </div>
