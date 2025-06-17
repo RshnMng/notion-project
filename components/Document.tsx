@@ -6,6 +6,7 @@ import { updateDoc, doc } from 'firebase/firestore';
 import { db } from '@/firebase';
 import { useDocumentData } from 'react-firebase-hooks/firestore';
 import  useOwner  from '@/lib/useOwner'
+import Editor from './Editor';
 
 function Document({id} : {id: string}) {
     const [input, setInput ]  = useState('check it out');
@@ -47,7 +48,7 @@ function Document({id} : {id: string}) {
 
 
                  {/* collabrative editor */}
-
+                <Editor />
     </div>
 )}
 
