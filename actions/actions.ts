@@ -51,3 +51,28 @@ export async function deleteDocument(roomId: string){
         return { success: false}
     }
 }
+
+export async function InviteUserToDocument(roomId: string, email: string){
+    auth.protect();
+
+    console.log('inviteuser function ', roomId, 'roomid', email, 'email');
+
+    try {
+        await adminDb.collection('users')
+        .doc(email)
+        .collection('rooms')
+        .doc(roomId)
+        .set({
+            userId: email,
+            role: 'editor',
+            createdAt: new Date(),
+            roomId
+        });
+
+        return { success: true }
+
+    } catch (error){
+        console.log(error);
+        return { success : false }
+    }
+}

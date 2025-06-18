@@ -6,13 +6,19 @@ import { db } from '@/firebase';
 import { doc } from 'firebase/firestore';
 import { usePathname } from 'next/navigation';
 
-function SidebarOption({href, id}: { href: string, id: string }) {
+function SidebarOption({href, id, type }: { href: string, id: string, type: string }) {
+
+ console.log( id, 'id', type, )
 
     const [ data, loading, error ] = useDocumentData(doc(db, 'documents', id));
     const pathname = usePathname();
     const isActive = href.includes(pathname) && pathname !== '/';
+    
+  
 
     if ( !data ) return null;
+
+
     
     
   return (

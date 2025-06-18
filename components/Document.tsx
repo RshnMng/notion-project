@@ -8,6 +8,7 @@ import { useDocumentData } from 'react-firebase-hooks/firestore';
 import  useOwner  from '@/lib/useOwner'
 import Editor from './Editor';
 import DeleteDocument from './DeleteDocument';
+import InviteUser from './InviteUser';
 
 function Document({id} : {id: string}) {
     const [input, setInput ]  = useState('check it out');
@@ -39,6 +40,7 @@ function Document({id} : {id: string}) {
                             <Button disabled={isUpdating} type='submit' >{isUpdating ? `Updating...` : 'Update' }</Button>                                   
                             {/* if owner => invite user and delete document*/}
 
+                            <InviteUser />
                             { isOwner && <DeleteDocument />}
                         </form>
                 </div>
