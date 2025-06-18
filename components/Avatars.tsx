@@ -13,19 +13,21 @@ function Avatars() {
 
   return (
     <div className='flex gap-2 items-center'>
-        <p className='font-light text-sm'>Others currenly editing this page</p>
+        <p className='font-light text-sm'>Currenly editing this page</p>
 
         <div className='flex -space-x-5'>
             {all.map((other, i) => {
                 return <TooltipProvider key={other.id + i}>
                         <Tooltip>
-                            <TooltipTrigger>Hover</TooltipTrigger>
-                                 <TooltipContent>
-                                
-                                
-
-
-                                </TooltipContent>
+                            <TooltipTrigger>
+                                 <Avatar className='border-2 hover:z-50'>
+                                        <AvatarImage src={other?.info.avatar} />
+                                        <AvatarFallback className={other?.info.name}></AvatarFallback>
+                                 </Avatar>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                                    <p>{self?.id === other?.id ? 'You' : other?.info.name}</p>
+                            </TooltipContent>
                        </Tooltip>
                     </TooltipProvider>
             })}
