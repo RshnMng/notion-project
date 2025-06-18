@@ -10,6 +10,7 @@ import Editor from './Editor';
 import DeleteDocument from './DeleteDocument';
 import InviteUser from './InviteUser';
 import ManageUsers from './ManageUsers';
+import Avatars from './Avatars';
 
 function Document({id} : {id: string}) {
     const [input, setInput ]  = useState('check it out');
@@ -39,18 +40,21 @@ function Document({id} : {id: string}) {
                             {/* update title */}
                             <Input value={input} onChange={ (e) => setInput(e.target.value)} className='bg-white font-bold text-green-700 text-center max-w-2xl' />
                             <Button disabled={isUpdating} type='submit' >{isUpdating ? `Updating...` : 'Update' }</Button>                                   
+                           
+                           
                             {/* if owner => invite user and delete document*/}
-
                             <InviteUser />
                             { isOwner && <DeleteDocument />}
                         </form>
                 </div>
 
                 <div className='flex max-w-6xl mx-auto justify-between items-center mb-5'>
+                        {/* {manage users} */}
                         <ManageUsers />
-                 {/* {manage users} */}
+                 
 
                  {/* Avatars */}
+                 <Avatars />
                 </div>
 
 
