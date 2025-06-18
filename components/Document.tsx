@@ -9,6 +9,7 @@ import  useOwner  from '@/lib/useOwner'
 import Editor from './Editor';
 import DeleteDocument from './DeleteDocument';
 import InviteUser from './InviteUser';
+import ManageUsers from './ManageUsers';
 
 function Document({id} : {id: string}) {
     const [input, setInput ]  = useState('check it out');
@@ -45,7 +46,8 @@ function Document({id} : {id: string}) {
                         </form>
                 </div>
 
-                <div>
+                <div className='flex max-w-6xl mx-auto justify-between items-center mb-5'>
+                        <ManageUsers />
                  {/* {manage users} */}
 
                  {/* Avatars */}
