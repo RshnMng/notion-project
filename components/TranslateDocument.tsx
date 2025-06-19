@@ -107,8 +107,6 @@ function TranslateDocument({ doc } : { doc: Y.Doc }) {
           </div>
           <p>{isPending ? 'Thinking...' : <MarkDown>{summary}</MarkDown>}</p>
       </div>
-    
-    
     }
 
 
