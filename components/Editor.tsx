@@ -9,6 +9,7 @@ import { MoonIcon, SunIcon } from 'lucide-react';
 import { BlockNoteView } from '@blocknote/shadcn';
 import { BlockNoteEditor } from '@blocknote/core';
 import { useCreateBlockNote } from '@blocknote/react';
+import  TranslateDocument  from '@/components/TranslateDocument';
 import stringToColor from "@/lib/stringToColor";
 import '@blocknote/core/fonts/inter.css';
 import '@blocknote/shadcn/style.css';
@@ -79,6 +80,11 @@ function Editor() {
     <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-2 justify-end mb-10">
             {/* {ai translation document} */}
+            <TranslateDocument doc={doc}/> 
+
+
+
+
             {/* { chat to documentment ai} */}
 
             {/* { dark mode} */}    
