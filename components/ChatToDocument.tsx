@@ -25,7 +25,10 @@ function ChatToDocument({ doc }: {doc: Y.Doc }) {
     const [summary, setSummary ]  = useState('');
     const [question, setQuestion]  = useState('');
 
+    console.log(summary, 'summary')
+
     const handleAskQuestion = async (e: FormEvent) => {
+      
           e.preventDefault();  
 
           setQuestion(input);
@@ -33,12 +36,12 @@ function ChatToDocument({ doc }: {doc: Y.Doc }) {
           startTransition( async () => {
               const documentData = doc.get('document-store').toJSON();
 
-              const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/chatToDocument`, {
+              const res = await fetch(`https://notion-cloudflare.rmng-developer-763.workers.dev/chatToDocument`, {
                 method : 'POST',
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({
                   documentData,
-                  question: input
+                  question: question
                 })
               })
 
