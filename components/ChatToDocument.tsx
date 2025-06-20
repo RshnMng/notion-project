@@ -25,13 +25,13 @@ function ChatToDocument({ doc }: {doc: Y.Doc }) {
     const [summary, setSummary ]  = useState('');
     const [question, setQuestion]  = useState('');
 
-    console.log(summary, 'summary')
-
     const handleAskQuestion = async (e: FormEvent) => {
       
           e.preventDefault();  
 
           setQuestion(input);
+
+          console.log(question, 'question')
 
           startTransition( async () => {
               const documentData = doc.get('document-store').toJSON();
@@ -41,15 +41,15 @@ function ChatToDocument({ doc }: {doc: Y.Doc }) {
                 headers: { 'Content-Type': 'application/json'},
                 body: JSON.stringify({
                   documentData,
-                  question: question
+                  question: input
                 })
               })
 
               if(res.ok) {
-                  const { message } = await res.json();
-
+                  const { messages } = await res.json();
                   setInput('');
-                  setSummary(message);
+                  setQuestion('');
+                  setSummary(messages)
                   toast.success('Question asked successfully!')
               }
           })
@@ -74,7 +74,7 @@ function ChatToDocument({ doc }: {doc: Y.Doc }) {
 
     </DialogHeader>
 
-     {summary && 
+     {summary && (
       <div className='flex flex-col items-starrt max-h-36 overflow-y-scroll gap-2 p-5 bg-gray-100'>
           <div className='flex'>
             <BotIcon className='w-10 flex-shrink-0'/>
@@ -82,6 +82,7 @@ function ChatToDocument({ doc }: {doc: Y.Doc }) {
           </div>
           <p>{isPending ? 'Thinking...' : <Markdown>{summary}</Markdown>}</p>
       </div>
+     )
     }
 
     <form onSubmit={handleAskQuestion} className="flex gap-2">
