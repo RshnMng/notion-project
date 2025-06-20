@@ -4,7 +4,11 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { Toaster } from "@/components/ui/sonner";
-import { Providers } from './providers';
+import dynamic from 'next/dynamic';
+
+const Providers = dynamic(() => import('./providers').then(mod => mod.Providers), {
+  ssr: false, // 👈 disables server-side rendering of Providers
+});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
