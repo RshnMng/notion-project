@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { ClerkProvider } from "@clerk/nextjs";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { Toaster } from "@/components/ui/sonner";
+import { Providers } from './providers';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -22,9 +22,7 @@ export const metadata: Metadata = {
   description: "Presented by cha' boy",
 };
 
-const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-console.log("Clerk publishableKey:", publishableKey); 
 
 export default function RootLayout({
   children,
@@ -33,10 +31,11 @@ export default function RootLayout({
 }>) {
   return (
 
-       <ClerkProvider publishableKey={publishableKey}>
                      <html lang="en">
+                      
                           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}
                               >
+                              <Providers>
                                 <Header />
                                 <div className="flex min-h-screen"> 
                                        <Sidebar />
@@ -48,8 +47,8 @@ export default function RootLayout({
 
                                 </div>
                                 <Toaster position='top-center'/>
+                                </Providers>
                           </body>
                      </html>
-        </ClerkProvider>
   );
 }
