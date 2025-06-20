@@ -1,10 +1,13 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
 import { NextRequest } from 'next/server';
 
-export default function middleware(req : NextRequest, ev: any){
+export default async function middleware(req : NextRequest, ev: any){
 
    try {
-    return clerkMiddleware()(req, ev);
+    console.log(process.env.CLERK_SECRET_KEY, 'sec key')
+    console.log(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY, 'pub key')
+    console.log('this is working with no error thrown')
+    return await clerkMiddleware()(req, ev);
   } catch (err) {
     console.error('Middleware caught error:', err);
     return new Response('Internal Server Error', { status: 500 });
