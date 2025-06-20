@@ -1,6 +1,17 @@
 import { clerkMiddleware } from '@clerk/nextjs/server';
+import { NextRequest } from 'next/server';
 
-export default clerkMiddleware();
+export default function middleware(req : NextRequest, ev: any){
+
+   try {
+    return clerkMiddleware()(req, ev);
+  } catch (err) {
+    console.error('Middleware caught error:', err);
+    return new Response('Internal Server Error', { status: 500 });
+  }
+}
+
+
 
 export const config = {
   matcher: [
@@ -10,3 +21,4 @@ export const config = {
     '/(api|trpc)(.*)',
   ],
 };
+
