@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
-import Head from "next/head";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
 import { Toaster } from "@/components/ui/sonner";
@@ -23,6 +22,10 @@ export const metadata: Metadata = {
   description: "Presented by cha' boy",
 };
 
+const publishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
+
+console.log("Clerk publishableKey:", publishableKey); 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
 
-       <ClerkProvider>
+       <ClerkProvider publishableKey={publishableKey}>
                      <html lang="en">
                           <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}
                               >

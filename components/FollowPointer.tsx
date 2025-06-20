@@ -1,4 +1,4 @@
-import {motion, AnimatePresence, useMotionValue} from 'framer-motion';
+import {motion} from 'framer-motion';
 import stringToColor from '@/lib/stringToColor';
 
 function FollowPointer({x, y, info} : { x: number, y: number, info : { name: string, email: string}}) {

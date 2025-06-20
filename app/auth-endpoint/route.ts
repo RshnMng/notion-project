@@ -1,19 +1,23 @@
 import { NextRequest, NextResponse } from "next/server"
 import { auth } from '@clerk/nextjs/server'
-import liveblocks from "@/lib/liveblocks";
 import { adminDb } from "@/firebase-admin";
+import { getLiveBlocks } from '@/lib/liveblocks';
 
 export async function POST(req: NextRequest) {
     auth.protect();
-
+    const liveblocks = getLiveBlocks();
     const { sessionClaims } = await auth();
     const { room } = await req.json();
 
-    const session = liveblocks.prepareSession(sessionClaims?.email!, {
+    if (!sessionClaims || !sessionClaims.email || !sessionClaims.fullName || !sessionClaims.image) {
+  throw new Error('Missing session claim data');
+}
+
+    const session = liveblocks.prepareSession(sessionClaims.email, {
         userInfo: {
-            name: sessionClaims?.fullName!,
-            email: sessionClaims?.email!,
-            avatar: sessionClaims?.image!
+            name: sessionClaims.fullName,
+            email: sessionClaims.email,
+            avatar: sessionClaims.image
         }
     });
 

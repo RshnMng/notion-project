@@ -11,7 +11,6 @@ import {
 import {useState, useTransition } from 'react';
 import { Button } from './ui/button';
 import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
 import { toast } from 'sonner';
 import { Input } from "./ui/input";
 import { FormEvent } from "react";
@@ -22,7 +21,6 @@ function InviteUser() {
     const [ isOpen, setIsOpen ] = useState(false);
     const [ isPending, startTransition ] = useTransition();
     const pathname = usePathname();
-    const router = useRouter();
     const [email, setEmail ]  = useState('');
 
     const handleInvite = async (e: FormEvent) => {

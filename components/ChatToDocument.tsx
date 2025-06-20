@@ -74,6 +74,8 @@ function ChatToDocument({ doc }: {doc: Y.Doc }) {
 
     </DialogHeader>
 
+      <p>Q:{question}</p>
+
      {summary && (
       <div className='flex flex-col items-starrt max-h-36 overflow-y-scroll gap-2 p-5 bg-gray-100'>
           <div className='flex'>

@@ -1,7 +1,7 @@
 'use server';
 import { auth } from '@clerk/nextjs/server';
 import { adminDb } from '@/firebase-admin';
-import liveblocks from '@/lib/liveblocks';
+import { getLiveBlocks } from '@/lib/liveblocks';
 
 export async function createNewDocument(){
     auth.protect();
@@ -23,6 +23,7 @@ export async function createNewDocument(){
 
 export async function deleteDocument(roomId: string){
     auth.protect();
+    const liveblocks = getLiveBlocks();
 
 
     try {

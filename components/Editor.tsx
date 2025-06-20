@@ -20,7 +20,7 @@ import '@blocknote/shadcn/style.css';
 
 type EditorProps = {
     doc: Y.Doc;
-    provider: any;
+    provider: LiveblocksYjsProvider;
     darkMode: boolean;
 }
 
@@ -28,14 +28,18 @@ type EditorProps = {
 function BlockNote({ doc, provider, darkMode}: EditorProps) {
     const userInfo = useSelf((me) => me.info);
 
+    if (!userInfo || !userInfo.name || !userInfo.email) {
+  throw new Error("User info is incomplete");
+}
+
     const editor : BlockNoteEditor = useCreateBlockNote({
         collaboration: {
             provider, 
             fragment: doc.getXmlFragment('document-store'),
 
             user: {
-                name: userInfo?.name!, 
-                color: stringToColor(userInfo?.email!)
+                name: userInfo.name, 
+                color: stringToColor(userInfo.email)
             }
 
         }
